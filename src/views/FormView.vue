@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import FormInput from '../components/formInput.vue'
+import { ref, onMounted } from 'vue'
 const API_URL = import.meta.env.VITE_API_URL
+const schema = ref<Record<string, any>>({})
 
 const handelSubmit = async (formData: any) => {
   try {
@@ -19,10 +21,21 @@ const handelSubmit = async (formData: any) => {
     console.log(error)
   }
 }
+
+onMounted(async () => {
+  try {
+    const response = await fetch(`${API_URL}/api/forms/schema`)
+    const data = await response.json()
+    schema.value = data.fields
+    console.log(data.fields)
+  } catch (error) {
+    console.error(error)
+  }
+})
 </script>
 
 <template>
   <main>
-    <FormInput @send="handelSubmit" />
+    <FormInput :schema="schema" @send="handelSubmit" />
   </main>
 </template>
