@@ -25,9 +25,9 @@ const handelSubmit = async (formData: any) => {
 onMounted(async () => {
   try {
     const response = await fetch(`${API_URL}/api/forms/schema`)
-    const data = await response.json()
-    schema.value = data.fields
-    console.log(data.fields)
+    // const data = await response.json()
+    // schema.value = data.fields
+    console.log(response)
   } catch (error) {
     console.error(error)
   }
