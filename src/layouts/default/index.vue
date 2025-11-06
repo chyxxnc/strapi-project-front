@@ -38,6 +38,6 @@ const items = [
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
+    <router-view />
   </SidebarProvider>
-  <router-view />
 </template>
